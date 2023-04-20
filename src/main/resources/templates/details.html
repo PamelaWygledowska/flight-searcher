@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Flight searcher</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="/home">Lot - wyszukiwarka lotów</a>
+</nav>
+
+<div class="container">
+    <h2 class="my-5">W tamtą</h2>
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>odlot lotnisko</th>
+            <th>odlot godzina</th>
+            <th>przylot lotnisko</th>
+            <th>przylot godzina</th>
+            <th>czas trwania lotu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="segment : ${flightOfferSearch.getItineraries()[0].getSegments()}">
+            <td th:text="${segment.getDeparture().getIataCode()}"></td>
+            <td th:text="${segment.getDeparture().getAt()}"></td>
+            <td th:text="${segment.getArrival().getIataCode()}"></td>
+            <td th:text="${segment.getArrival().getAt()}"></td>
+            <td th:text="${segment.getDuration()}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2 class="my-5">Z powrotem</h2>
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>odlot lotnisko</th>
+            <th>odlot godzina</th>
+            <th>przylot lotnisko</th>
+            <th>przylot godzina</th>
+            <th>czas trwania lotu</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="segment : ${flightOfferSearch.getItineraries()[1].getSegments()}">
+            <td th:text="${segment.getDeparture().getIataCode()}"></td>
+            <td th:text="${segment.getDeparture().getAt()}"></td>
+            <td th:text="${segment.getArrival().getIataCode()}"></td>
+            <td th:text="${segment.getArrival().getAt()}"></td>
+            <td th:text="${segment.getDuration()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

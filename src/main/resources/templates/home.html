@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Flight searcher</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="#">Lot - wyszukiwarka lotów</a>
+</nav>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <form action="#" th:action="@{/searchFlight}" th:object="${searchCriteria}" method="get">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="departureAirport" class="col-form-label"> Wylot z lotniska </label>
+                        <!--   To improve selecting functionality, options should be taken from backed (file or external API)          -->
+                        <select type="text" th:field="*{departureAirport}" class="form-control"
+                                id="departureAirport">
+                            <option value="AMS">AMS</option>
+                            <option value="ATH">ATH</option>
+                            <option value="BCN">BCN</option>
+                            <option value="PAR">PAR</option>
+                            <option value="LHR">LHR</option>
+                            <option value="MAD">MAD</option>
+                            <option value="BGY">BGY</option>
+                            <option value="JFK">JFK</option>
+                            <option value="WRO">WRO</option>
+                            <option value="WAW">WAW</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="arrivalAirport" class="col-form-label">Lotnisko docelowe</label>
+                        <!--   To improve selecting functionality, options should be taken from backed (file or external API)          -->
+                        <select type="text" th:field="*{arrivalAirport}" class="form-control"
+                                id="arrivalAirport">
+                            <option value="AMS">AMS</option>
+                            <option value="ATH">ATH</option>
+                            <option value="BCN">BCN</option>
+                            <option value="PAR">PAR</option>
+                            <option value="LHR">LHR</option>
+                            <option value="MAD">MAD</option>
+                            <option value="BGY">BGY</option>
+                            <option value="JFK">JFK</option>
+                            <option value="WRO">WRO</option>
+                            <option value="WAW">WAW</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="departureDate" class="col-form-label">Data wylotu</label>
+                        <input type="date" th:field="*{departureDate}" class="form-control" id="departureDate">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="arrivalDate" class="col-form-label">Data przylotu</label>
+                        <input type="date" th:field="*{arrivalDate}" class="form-control" id="arrivalDate">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="numberOfAdultPassengers" class="col-form-label">Liczba dorosłych pasażerów</label>
+                        <input type="number" min="1" max="200" step="1" th:field="*{numberOfAdultPassengers}"
+                               class="form-control" id="numberOfAdultPassengers">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="numberOfChildren" class="col-form-label">Liczba dzieci w wieku 2 - 12 lat</label>
+                        <input type="number" min="0" max="200" step="1" th:field="*{numberOfChildren}"
+                               class="form-control" id="numberOfChildren">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="numberOfInfants" class="col-form-label">Liczba dzieci w wieku <= 2 lat</label>
+                        <input type="number" min="0" max="200" step="1" th:field="*{numberOfInfants}"
+                               class="form-control" id="numberOfInfants">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="maxNumOfFlights" class="col-form-label">Maxymalna liczba wyświetlonych lotów</label>
+                        <input type="number" min="1" max="200" step="1" th:field="*{maxNumOfFlights}"
+                               class="form-control" id="maxNumOfFlights">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mt-5">
+                        <input type="submit" class="btn btn-primary" value="Szukaj">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Flight searcher</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+    <a class="navbar-brand" href="/home">Lot - wyszukiwarka lotów</a>
+</nav>
+
+<div class="container">
+    <h2 class="my-5">Oferty</h2>
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cena</th>
+            <th>Waluta</th>
+            <th>Czas trwania podróży w tamtą</th>
+            <th>Czas trwania podróży z powrotem</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="offer : ${offers}">
+            <td th:text="${offer.getId()}"></td>
+            <td th:text="${offer.getPrice().getTotal()}"></td>
+            <td th:text="${offer.getPrice().getCurrency()}"></td>
+            <td th:text="${offer.getItineraries()[0].getDuration()}"></td>
+            <td th:text="${offer.getItineraries()[1].getDuration()}"></td>
+            <td><a class="btn btn-primary" th:href="@{/details/{id}(id=${offer.getId()})}"
+                   role="button">Szczegóły</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
